@@ -15,12 +15,11 @@
 
 // * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
+// Dependencies 
 const inquirer = require("inquirer");
-const squel = require("squel");
-const connection = require("Database/connection.js"); // mysql export
-const cTable = require("console.table");
+let { connection } = require("./db/connection");
+let { queryCalls } = require("./db/query.js");
 
-const query = require("Database/query.js");
 
 function start() {
   inquirer
@@ -42,17 +41,17 @@ function start() {
         "Delete Departments",
         "Delete Roles",
         "Delete Employees",
-        "Exit"
+        "Exit",
       ],
     })
     .then(function (answer) {
-        switch (answer.action) {
+        switch (answer.empChoice) {
             case "Employee View":
-              employeeView();
+                queryCalls.empFunc();
               break;
       
             case "Department View":
-              deptView();
+                queryCalls.deptFunc();
               break;
       
             case "Roles View":
@@ -109,6 +108,8 @@ function start() {
     });
 
 }
+
+start();
 
 
     
