@@ -8,7 +8,11 @@ VALUES ("Legal"),
        ("Research & Development"),
        ("Sales"),
        ("Marketing"),
-       ("Production");
+       ("Production"),
+       ("Office Security"), 
+       ("Janitorial Services"), 
+	   ("Catering");
+
 
 INSERT INTO role (title, salary, department_id)
 VALUES ("General Counsel", 1000000, 1),
@@ -17,7 +21,10 @@ VALUES ("General Counsel", 1000000, 1),
 ("Production Assistant", 80000, 4),
 ("Intern", 50000, 5),
 ("Hiring Director", 900000, 6),
-("Software Engineer", 5000000, 7);
+("Software Engineer", 5000000, 7),
+("Head Chef", 1100000, 8),
+("Overnight Janitor", 90000, 9),
+("Chief Security Officer", 1300000, 10);
 
 INSERT INTO employee (first_name, last_name, role_id)
 VALUES 
@@ -32,13 +39,15 @@ VALUES
 ("Shikamaru", "Nara", 6), 
 ("Rock", "Lee", 7);
 
---for adding manager ID'S to employee as needed
+DROP TABLE role;
 
-UPDATE employee 
+UPDATE employee
 
 SET manager_id = 4
 
 WHERE first_name = 'Hinata';
+
+
 
 
 

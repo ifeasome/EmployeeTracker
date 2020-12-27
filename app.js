@@ -47,15 +47,15 @@ function start() {
     .then(function (answer) {
         switch (answer.empChoice) {
             case "Employee View":
-                queryCalls.empFunc();
-              break;
+            queryCalls.empFunc();
+            break;
       
             case "Department View":
                 queryCalls.deptFunc();
               break;
       
             case "Roles View":
-              rolesView();
+              queryCalls.rolesView();
               break;
       
             case "Department View by salary totals":
@@ -106,10 +106,17 @@ function start() {
 
 
     });
-
+// async function newGuy() {
+//   let foo = await queryCalls.empFunc();
+//   console.log("\n");
+//   console.table(foo);
+//     start();
+// } 
 }
 
 start();
+
+module.exports = { start };
 
 
     
