@@ -47,19 +47,38 @@ function start() {
     .then(function (answer) {
         switch (answer.empChoice) {
             case "Employee View":
-            queryCalls.empFunc();
-            break;
+             queryCalls.empFunc().then(output => {
+                console.log('\n');
+                 console.table(output)
+                 start()
+             }).catch(err => console.log(err))
+             break;
       
             case "Department View":
-                queryCalls.deptFunc();
+              queryCalls.deptFunc().then((output) => {
+                console.log('\n');
+                console.table(output);
+                start()
+            }
+             ).catch(err => console.log(err))
               break;
       
             case "Roles View":
-              queryCalls.rolesView();
+              queryCalls.rolesView().then((output) => {
+                console.log('\n');
+                console.table(output);
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
       
             case "Department View by salary totals":
-              deptSalaryView();
+              queryCalls.deptSalaryView().then((output) => {
+                console.log('\n');
+                console.table(output);
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
             case "Employee View by Managers":
@@ -106,17 +125,12 @@ function start() {
 
 
     });
-// async function newGuy() {
-//   let foo = await queryCalls.empFunc();
-//   console.log("\n");
-//   console.table(foo);
-//     start();
-// } 
-}
-
+};
 start();
 
-module.exports = { start };
+
+
+
 
 
     
