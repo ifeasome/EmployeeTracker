@@ -22,5 +22,8 @@
     "knex": "^0.21.14",
     "mysql": "^2.18.1",
     "squel": "^5.13.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10"
   }
 }
