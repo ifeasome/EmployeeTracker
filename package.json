@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/ifeasome/EmployeeTracker#readme",
   "dependencies": {
+    "ascii-art": "^2.5.0",
+    "asciiart-logo": "^0.2.6",
     "console.table": "^0.10.0",
     "inquirer": "^7.3.3",
     "knex": "^0.21.14",

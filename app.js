@@ -1,24 +1,24 @@
-// Reqs
-// * Add departments, roles, employees
-
-// * View departments, roles, employees
-
-// * Update employee roles
-
-// Bonus points if you're able to:
-
-// * Update employee managers
-
-// * View employees by manager
-
-// * Delete departments, roles, and employees
-
 // * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 // Dependencies 
 const inquirer = require("inquirer");
 let { connection } = require("./db/connection");
 let { queryCalls } = require("./db/query.js");
+const logo = require('asciiart-logo');
+console.log(
+    logo({
+        name: 'Employee Management System',
+        font: 'Standard',
+        lineChars: 10,
+        padding: 2,
+        margin: 3,
+        borderColor: 'grey',
+        logoColor: 'bold-cyan',
+        textColor: 'bold-cyan',
+    })
+    .render()
+);
+
 
 
 function start() {
@@ -31,7 +31,6 @@ function start() {
         "Employee View",
         "Department View",
         "Roles View",
-        "Department View by salary totals",
         "Employee View by Managers",
         "Add Department",
         "Add Roles",
@@ -71,54 +70,99 @@ function start() {
             }
              ).catch(err => console.log(err))
               break;
-      
-            case "Department View by salary totals":
-              queryCalls.deptSalaryView().then((output) => {
+
+            case "Employee View by Managers":
+              queryCalls.empmanagerView().then((output) => {
+                  console.log('\n', 'Output only shows employees with a Manager');
+                  console.log('\n');
+                  console.table(output);
+                  start();
+              }
+               ).catch(err => console.log(err))
+              break;
+
+            case "Add Department":
+              queryCalls.addDept().then((output) => {
+                console.log('Department Name has been added :)');
                 console.log('\n');
-                console.table(output);
+
+                start()
+              })
+               .catch(err => console.log(err))
+              break;
+
+            case "Add Roles":
+              queryCalls.addRoles().then((output) => {
+                console.log('Employee Role, Salary & ID have been added :D');
+                console.log('\n');
                 start();
             }
              ).catch(err => console.log(err))
               break;
 
-            case "Employee View by Managers":
-              empmanagerView();
-              break;
-
-            case "Add Department":
-              addDept();
-              break;
-
-            case "Add Roles":
-              addRoles();
-              break;
-
             case "Add Employees":
-              addEmployees();
+              queryCalls.addEmployees().then((output) => {
+                console.log('All Employee Information has been added!');
+                console.log('\n');
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
             case "Update Employee Roles":
-              updateEmployeeRoles();
+              queryCalls.updateEmployeeRoles().then((output) => {
+                console.log('\n');  
+                console.log('Employee Role has been updated!');
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
             case "Update Employee Managers":
-              updateEmployeeManagers();
+              queryCalls.updateEmployeeManagers().then((output) => {
+                console.log('\n');  
+                console.log('Employee Manager has been updated!');
+                console.log('\n'); 
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
       
 
             case "Delete Departments":
-              delDept();
+              queryCalls.delDept().then((output) => {
+                console.log('\n');  
+                console.log('Department Deleted!');
+                console.log('\n'); 
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
               case "Delete Roles":
-              delRoles();
+              queryCalls.delRoles().then((output) => {
+                console.log('\n');  
+                console.log('Employee Role has been Deleted!');
+                console.log('\n'); 
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
             case "Delete Employees":
-              delEmployees();
+              queryCalls.delEmployees().then((output) => {
+                console.log('\n');  
+                console.log('Employee has been Deleted!');
+                console.log('\n'); 
+                start();
+            }
+             ).catch(err => console.log(err))
               break;
 
             case "Exit":
+              console.log('\n');
+              console.log("Adieu!");
+              console.log('\n');
               connection.end();
               break;
     }

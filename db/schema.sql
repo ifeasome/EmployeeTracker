@@ -71,4 +71,25 @@ CREATE TABLE employee (
 SELECT * FROM employee;
 
 
+-- SELECT SUM (salary) FROM role WHERE role.salary, department.name 
+
+-- FROM role 
+
+-- INNER JOIN department ON role.department_id = department.id;
+-- SELECT g1.name, g1.publisher, g1.price, g1.released_at
+-- INNER JOIN (
+  -- SELECT released_at, MAX(price) as price
+  -- FROM games
+  -- GROUP BY released_at
+-- ) AS g2
+-- ON g2.released_at = g1.released_at AND g2.price = g1.price;
+
+SELECT role.salary
+FROM role 
+INNER JOIN (
+SELECT salary, SUM(salary) as g1
+FROM role
+GROUP BY salary) AS g2
+ON role.department_id;
+
 
