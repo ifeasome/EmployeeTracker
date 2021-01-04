@@ -9,13 +9,13 @@ const options = {
   }
 };
 
-const knex = require('knex') (options);
+const knex = require('knex') (options); // query builder
 
-const cTable = require('console.table');
+const cTable = require('console.table'); // table console
 
-let inquirer = require("inquirer");
+let inquirer = require("inquirer"); // inquirer prompts
 
-const { connection } = require('./connection');
+const { connection } = require('./connection'); // db connection import
 
 
 
@@ -27,7 +27,9 @@ let queryCalls = {
   }, 
   // function Department View
   deptFunc: function() {
-   return knex.from('department').select('*')
+    return knex.from('department')
+    .join('role', 'department.id', 'role.department_id')
+    .select('department.name', 'role.title', 'role.salary')
   },
   // function Roles View
   rolesView: function() {

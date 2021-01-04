@@ -1,10 +1,10 @@
 // * View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 // Dependencies 
-const inquirer = require("inquirer");
-let { connection } = require("./db/connection");
-let { queryCalls } = require("./db/query.js");
-const logo = require('asciiart-logo');
+const inquirer = require("inquirer"); // inquirer prompts
+let { connection } = require("./db/connection"); // db connection export
+let { queryCalls } = require("./db/query.js"); // query function import 
+const logo = require('asciiart-logo'); // logo display
 console.log(
     logo({
         name: 'Employee Management System',
@@ -21,7 +21,7 @@ console.log(
 
 
 
-function start() {
+function start() { // start of function
   inquirer
     .prompt({
       name: "empChoice",
